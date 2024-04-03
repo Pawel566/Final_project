@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from virtual_workshop.views import dashboard_view, tools_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', dashboard_view, name='dashboard'),
+    path('tools/', tools_view, name='tools')
 ]
