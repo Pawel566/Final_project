@@ -16,10 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from virtual_workshop.views import dashboard_view, tools_view
+from virtual_workshop.views import (dashboard_view, tools, add_tools_to_list, jobs,
+                                    service, add_job, add_tool_to_job, add_tool_to_service)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', dashboard_view, name='dashboard'),
-    path('tools/', tools_view, name='tools')
+    path('tools/', tools, name='tools'),
+    path('tools/add_tools_to_list/', add_tools_to_list, name='add_tools'),
+    path('jobs/', jobs, name="jobs"),
+    path('service/', service, name='service'),
+    path('jobs/add_job/', add_job, name='add_job'),
+    path('jobs/add_tool_to_job/', add_tool_to_job, name='add_tool_to_job'),
+    path('service/add_tool_to_service/', add_tool_to_service, name='add_tool_to_service')
 ]

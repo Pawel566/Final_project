@@ -3,14 +3,15 @@
 <html style="font-size: 16px;" lang="pl" class="u-responsive-md"><head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="​Project Planning, INTUITIVE">
+    <meta name="keywords" content="Wirtualny warsztat">
     <meta name="description" content="">
-    <title>dashboard</title>
+    <title>add_tools_to_list</title>
     <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
-<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" media="screen">
+<link rel="stylesheet" href="{% static 'css/add_tools_to_list.css' %}" media="screen">
     <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
     <meta name="generator" content="Nicepage 6.6.3, nicepage.com">
+    <meta name="referrer" content="origin">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
 
 
@@ -21,7 +22,7 @@
 		"name": ""
 }</script>
     <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="dashboard">
+    <meta property="og:title" content="add_tools_to_list">
     <meta property="og:type" content="website">
   <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
   <body data-path-to-root="./" data-include-products="false" class="u-body u-xl-mode" data-lang="pl"><header class="u-header" id="sec-403e" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><div class="u-clearfix u-sheet u-sheet-1">
@@ -35,7 +36,7 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-unstyled"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'tools' %}">Narzędzia</a>
+            <ul class="u-nav u-unstyled"><li class="u-nav-item"><a class="u-button-style u-nav-link active" href="{% url 'tools' %}">Narzędzia</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'jobs' %}">Zlecenia</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'service' %}">Serwis</a>
 </li></ul>
@@ -44,7 +45,7 @@
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="tools.html">Narzędzia</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link active" href="tools.html">Narzędzia</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="jobs.html">Zlecenia</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="service.html">Serwis</a>
 </li></ul>
@@ -55,14 +56,35 @@
         <style class="offcanvas-style">            .u-offcanvas .u-sidenav { flex-basis: 250px !important; }            .u-offcanvas:not(.u-menu-open-right) .u-sidenav { margin-left: -250px; }            .u-offcanvas.u-menu-open-right .u-sidenav { margin-right: -250px; }            @keyframes menu-shift-left    { from { left: 0;        } to { left: 250px;  } }            @keyframes menu-unshift-left  { from { left: 250px;  } to { left: 0;        } }            @keyframes menu-shift-right   { from { right: 0;       } to { right: 250px; } }            @keyframes menu-unshift-right { from { right: 250px; } to { right: 0;       } }            </style></nav>
         <a href="{% url 'dashboard' %}" class="u-border-none u-btn u-button-style u-none u-btn-1">Strona główna</a>
       </div></header>
-    <section class="u-align-center u-clearfix u-image u-section-1" id="carousel_bc4f">
+    <section class="u-clearfix u-image u-section-1" id="sec-bda1" data-image-width="1600" data-image-height="1031">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-align-left u-container-style u-group u-white u-group-1">
-          <div class="u-container-layout u-container-layout-1">
-            <h2 class="u-text u-text-default u-text-1">O aplikacji: </h2>
-            <p class="u-text u-text-2">"Wirtualny warsztat" to aplikacja stworzona dla tych, którzy chcą wiedzieć gdzie są ich narzędzia.<br>Twoja wiertarka znajduje się w serwisie, a może pracuje przy zleceniu?<br>Z tą aplikacją nie zgubisz żadnego narzędzia!
-            </p>
-          </div>
+        <div class="u-align-left u-form u-form-1">
+          <form action="https://forms.nicepagesrv.com/v2/form/process" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;" redirect="true" redirect-address="Narzędzia.html">
+            <div class="u-form-group u-form-name">
+              <label for="name-e1d2" class="u-label u-text-body-alt-color">Rodzaj narzędzia</label>
+              <input type="text" id="name-e1d2" name="name" class="u-border-white u-input u-input-rectangle" required="">
+            </div>
+            <div class="u-form-group">
+              <label for="email-e1d2" class="u-label u-text-body-alt-color">Model</label>
+              <input type="text" id="email-e1d2" name="model" class="u-border-white u-input u-input-rectangle" required="required">
+            </div>
+            <div class="u-form-group u-form-group-3">
+              <label for="text-7a9b" class="u-label u-text-body-alt-color">Ilość sztuk</label>
+              <input type="text" placeholder="" id="text-7a9b" name="number" class="u-border-white u-input u-input-rectangle" required="required">
+            </div>
+            <div class="u-form-group u-form-message">
+              <label for="message-e1d2" class="u-label u-text-body-alt-color">Wyposażenie dodatkowe</label>
+              <textarea placeholder="​" rows="3" cols="50" id="message-e1d2" name="accessories" class="u-border-white u-input u-input-rectangle" required=""></textarea>
+            </div>
+            <div class="u-align-left u-form-group u-form-submit">
+              <a href="{% url 'tools' %}" class="u-border-none u-btn u-btn-submit u-button-style u-palette-2-base u-btn-1">Dodaj</a>
+              <input type="submit" value="submit" class="u-form-control-hidden">
+            </div>
+            <div class="u-form-send-message u-form-send-success">Narzędzie zostało dodane!</div>
+            <div class="u-form-send-error u-form-send-message">Coś nie działa. Spróbuj ponownie.</div>
+            <input type="hidden" value="" name="recaptchaResponse">
+            <input type="hidden" name="formServices" value="19ed1f8f-cdd7-3157-d5c7-ebfd34f2a519">
+          </form>
         </div>
       </div>
     </section>
@@ -70,10 +92,10 @@
 
 
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-7a80"><div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-small-text u-text u-text-variant u-text-1">Coś tu kiedyś dodam</p>
+        <p class="u-small-text u-text u-text-variant u-text-1">...a tu dodajemy narzedzai do listy</p>
       </div></footer>
     <section class="u-backlink u-clearfix u-grey-80">
+      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
 
-    </section>
 
 <style>.u-disable-duration * {transition-duration: 0s !important;}</style></body></html>

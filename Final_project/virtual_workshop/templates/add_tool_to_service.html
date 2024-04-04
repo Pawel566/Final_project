@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% load static %}
+<html style="font-size: 16px;" lang="pl" class="u-responsive-md"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Wirtualny warsztat">
+    <meta name="description" content="">
+    <title>add_tool_to_service</title>
+    <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
+<link rel="stylesheet" href="{% static 'css/add_tool_to_service' %}" media="screen">
+    <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
+    <meta name="generator" content="Nicepage 6.6.3, nicepage.com">
+    <meta name="referrer" content="origin">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+
+
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="add_tool_to_service">
+    <meta property="og:type" content="website">
+  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <body data-path-to-root="./" data-include-products="false" class="u-body u-xl-mode" data-lang="pl"><header class="u-header" id="sec-403e" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><div class="u-clearfix u-sheet u-sheet-1">
+        <h2 class="u-text u-text-default u-text-1">Wirtualny warsztat</h2>
+        <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1 u-enable-responsive">
+          <div class="menu-collapse">
+            <a class="u-button-style u-nav-link" href="#">
+              <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-48a5"></use></svg>
+              <svg class="u-svg-content" version="1.1" id="svg-48a5" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+</g></svg>
+            </a>
+          </div>
+          <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-unstyled"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'tools' %}">Narzędzia</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'jobs' %}">Zlecenia</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'service' %}">Serwis</a>
+</li></ul>
+          </div>
+          <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="tools.html">Narzędzia</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="jobs.html">Zlecenia</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="service.html">Serwis</a>
+</li></ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+        <style class="offcanvas-style">            .u-offcanvas .u-sidenav { flex-basis: 250px !important; }            .u-offcanvas:not(.u-menu-open-right) .u-sidenav { margin-left: -250px; }            .u-offcanvas.u-menu-open-right .u-sidenav { margin-right: -250px; }            @keyframes menu-shift-left    { from { left: 0;        } to { left: 250px;  } }            @keyframes menu-unshift-left  { from { left: 250px;  } to { left: 0;        } }            @keyframes menu-shift-right   { from { right: 0;       } to { right: 250px; } }            @keyframes menu-unshift-right { from { right: 250px; } to { right: 0;       } }            </style></nav>
+        <a href="{% url 'dashboard' %}" class="u-border-none u-btn u-button-style u-none u-btn-1">Strona główna</a>
+      </div></header>
+    <section class="u-clearfix u-image u-section-1" id="sec-9fb8" data-image-width="1600" data-image-height="1031">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-form u-form-1">
+          <form action="https://forms.nicepagesrv.com/v2/form/process" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="email" name="form_add_to_service" redirect="true" redirect-address="service.html">
+            <div class="u-form-group u-form-name u-label-top">
+              <label for="name-6797" class="u-label u-text-body-alt-color">Nazwa narzędzia</label>
+              <input type="text" id="name-6797" name="name" class="u-input u-input-rectangle u-text-body-color" required="">
+            </div>
+            <div class="u-form-group u-label-top">
+              <label for="email-6797" class="u-label u-text-body-alt-color">Model</label>
+              <input type="text" id="email-6797" name="model" class="u-input u-input-rectangle u-text-body-color" required="required">
+            </div>
+            <div class="u-form-group u-form-message u-label-top">
+              <label for="message-6797" class="u-label u-text-body-alt-color">Opis usterki</label>
+              <textarea rows="4" cols="50" id="message-6797" name="problem" class="u-input u-input-rectangle u-text-body-color" required=""></textarea>
+            </div>
+            <div class="u-form-date u-form-group u-form-textarea u-label-top u-form-group-4" style="position: relative;">
+              <label for="textarea-cfd6" class="u-label u-text-body-alt-color">Data odbioru</label>
+              <input id="textarea-cfd6" name="repair_date" class="u-input u-input-rectangle u-text-body-color readonly" required="required" type="text" data-date-format="mm/dd/yyyy">
+            <div class="qs-datepicker-container qs-hidden"><div class="qs-datepicker"><div class="qs-controls"><div class="qs-arrow qs-left"></div><div class="qs-month-year"><span class="qs-month">Kwiecień</span><span class="qs-year">2024</span></div><div class="qs-arrow qs-right"></div></div><div class="qs-squares"><div class="qs-square qs-day">Pon.</div><div class="qs-square qs-day">Wt.</div><div class="qs-square qs-day">Śr.</div><div class="qs-square qs-day">Czw.</div><div class="qs-square qs-day">Pt.</div><div class="qs-square qs-day">Sob.</div><div class="qs-square qs-day">Niedz.</div><div class="qs-square Pon. qs-num" data-direction="0">1</div><div class="qs-square Wt. qs-num" data-direction="0">2</div><div class="qs-square Śr. qs-num" data-direction="0">3</div><div class="qs-square Czw. qs-num qs-current" data-direction="0">4</div><div class="qs-square Pt. qs-num" data-direction="0">5</div><div class="qs-square Sob. qs-num" data-direction="0">6</div><div class="qs-square Niedz. qs-num" data-direction="0">7</div><div class="qs-square Pon. qs-num" data-direction="0">8</div><div class="qs-square Wt. qs-num" data-direction="0">9</div><div class="qs-square Śr. qs-num" data-direction="0">10</div><div class="qs-square Czw. qs-num" data-direction="0">11</div><div class="qs-square Pt. qs-num" data-direction="0">12</div><div class="qs-square Sob. qs-num" data-direction="0">13</div><div class="qs-square Niedz. qs-num" data-direction="0">14</div><div class="qs-square Pon. qs-num" data-direction="0">15</div><div class="qs-square Wt. qs-num" data-direction="0">16</div><div class="qs-square Śr. qs-num" data-direction="0">17</div><div class="qs-square Czw. qs-num" data-direction="0">18</div><div class="qs-square Pt. qs-num" data-direction="0">19</div><div class="qs-square Sob. qs-num" data-direction="0">20</div><div class="qs-square Niedz. qs-num" data-direction="0">21</div><div class="qs-square Pon. qs-num" data-direction="0">22</div><div class="qs-square Wt. qs-num" data-direction="0">23</div><div class="qs-square Śr. qs-num" data-direction="0">24</div><div class="qs-square Czw. qs-num" data-direction="0">25</div><div class="qs-square Pt. qs-num" data-direction="0">26</div><div class="qs-square Sob. qs-num" data-direction="0">27</div><div class="qs-square Niedz. qs-num" data-direction="0">28</div><div class="qs-square Pon. qs-num" data-direction="0">29</div><div class="qs-square Wt. qs-num" data-direction="0">30</div><div class="qs-square Śr. qs-outside-current-month qs-empty" data-direction="1"></div><div class="qs-square Czw. qs-outside-current-month qs-empty" data-direction="1"></div><div class="qs-square Pt. qs-outside-current-month qs-empty" data-direction="1"></div><div class="qs-square Sob. qs-outside-current-month qs-empty" data-direction="1"></div><div class="qs-square Niedz. qs-outside-current-month qs-empty" data-direction="1"></div></div><div class="qs-overlay qs-hidden"><div><input class="qs-overlay-year" placeholder="4-digit year" inputmode="numeric"><div class="qs-close">✕</div></div><div class="qs-overlay-month-container"><div class="qs-overlay-month" data-month-num="0">Sty</div><div class="qs-overlay-month" data-month-num="1">Lut</div><div class="qs-overlay-month" data-month-num="2">Mar</div><div class="qs-overlay-month" data-month-num="3">Kwi</div><div class="qs-overlay-month" data-month-num="4">Maj</div><div class="qs-overlay-month" data-month-num="5">Cze</div><div class="qs-overlay-month" data-month-num="6">Lip</div><div class="qs-overlay-month" data-month-num="7">Sie</div><div class="qs-overlay-month" data-month-num="8">Wrz</div><div class="qs-overlay-month" data-month-num="9">Paź</div><div class="qs-overlay-month" data-month-num="10">Lis</div><div class="qs-overlay-month" data-month-num="11">Gru</div></div><div class="qs-submit qs-disabled">Submit</div></div></div></div></div>
+            <div class="u-align-left u-form-group u-form-submit u-label-top">
+              <a href="{% url 'service' %}" class="u-btn u-btn-submit u-button-style">Wyślij do serwisu</a>
+              <input type="submit" value="submit" class="u-form-control-hidden">
+            </div>
+            <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
+            <div class="u-form-send-error u-form-send-message">Unable to send your message. Please fix errors then try again.</div>
+            <input type="hidden" value="" name="recaptchaResponse">
+            <input type="hidden" name="formServices" value="19ed1f8f-cdd7-3157-d5c7-ebfd34f2a519">
+          </form>
+        </div>
+      </div>
+    </section>
+
+
+
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-7a80"><div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">bla bala bla</p>
+      </div></footer>
+    <section class="u-backlink u-clearfix u-grey-80">
+
+
+<style>.u-disable-duration * {transition-duration: 0s !important;}</style></body></html>
