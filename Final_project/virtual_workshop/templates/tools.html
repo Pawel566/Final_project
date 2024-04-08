@@ -71,8 +71,8 @@
         </div>
         <form action="{% url 'update_tool_status' tool.id %}" method="post">
             {% csrf_token %}
-            <input type="checkbox" name="in_use" id="in_use_{{ tool.id }}" {% if tool.in_use %} checked {% endif %}>
-            <label for="in_use_{{ tool.id }}">W pracy</label>
+            <input type="checkbox" name="in_job" id="in_job_{{ tool.id }}" {% if tool.in_job %} checked {% endif %}>
+            <label for="in_job_{{ tool.id }}">W pracy</label>
             <input type="checkbox" name="in_service" id="in_service_{{ tool.id }}" {% if tool.in_service %} checked {% endif %}>
             <label for="in_service_{{ tool.id }}">W serwisie</label>
             <button type="submit">Zaktualizuj status</button>

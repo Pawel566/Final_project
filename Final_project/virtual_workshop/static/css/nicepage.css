@@ -474,8 +474,8 @@ input,
 optgroup,
 select,
 textarea {
-  color: white;
-  font: red;
+  color: black;
+  font: ;
   margin: 0;
   gap: 100px;
 }
