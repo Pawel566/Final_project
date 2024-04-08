@@ -474,9 +474,10 @@ input,
 optgroup,
 select,
 textarea {
-  color: inherit;
-  font: inherit;
+  color: white;
+  font: red;
   margin: 0;
+  gap: 100px;
 }
 optgroup {
   font-weight: 700;
@@ -42647,3 +42648,8 @@ a.u-link.u-text-hover-grey-90:hover {
  /*begin-variables base-font-size*/ 
  html { font-size: 16px; }
  /*end-variables base-font-size*/
+
+
+.delete-button {
+    margin-left: 100px; /* Dodaje margines z lewej strony */
+}

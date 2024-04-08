@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import (dashboard_view, tools, add_tools, jobs,
-                                    service, add_job, add_tool_to_job, add_tool_to_service, delete_tool)
+                                    service, add_job, add_tool_to_job, add_tool_to_service, delete_tool,
+                    tools_status)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,4 +31,5 @@ urlpatterns = [
     path('jobs/add_tool_to_job/', add_tool_to_job, name='add_tool_to_job'),
     path('service/add_tool_to_service/', add_tool_to_service, name='add_tool_to_service'),
     path('delete_tool/<int:tool_id>/', delete_tool, name='delete_tool'),
+    path('tools/update_status/<int:tool_id>/', tools_status, name='update_tool_status'),
 ]

@@ -34,6 +34,14 @@ def delete_tool(request, tool_id):
     tool.delete()
     return redirect('tools')
 
+def tools_status(requset, tool_id):
+    tool = Tools.objects.get(Tools, id=tool_id)
+    tool.in_use = 'in_use' in request.POST
+    tool.in_service = 'in_service' in request.POST
+    tool.save()
+    messages.success(request, "Status narzędzia został zaktualizowany.")
+    return redirect('tools')
+
 
 def jobs(request):
     return render(request, 'jobs.html')
