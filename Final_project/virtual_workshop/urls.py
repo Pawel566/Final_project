@@ -15,10 +15,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-
+from django.urls import path
+from .views import (dashboard_view, tools, add_tools, jobs,
+                                    service, add_job, add_tool_to_job, add_tool_to_service, delete_tool)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('virtual_workshop.urls')),
+    path('', dashboard_view, name='dashboard'),
+    path('tools/', tools, name='tools'),
+    path('tools/add_tools_to_list/', add_tools, name='add_tools'),
+    path('jobs/', jobs, name="jobs"),
+    path('service/', service, name='service'),
+    path('jobs/add_job/', add_job, name='add_job'),
+    path('jobs/add_tool_to_job/', add_tool_to_job, name='add_tool_to_job'),
+    path('service/add_tool_to_service/', add_tool_to_service, name='add_tool_to_service'),
+    path('delete_tool/<int:tool_id>/', delete_tool, name='delete_tool'),
 ]

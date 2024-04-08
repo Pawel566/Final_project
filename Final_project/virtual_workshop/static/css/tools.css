@@ -1,40 +1,101 @@
  .u-section-1 {
   background-image: url("images/asd-min.jpg");
   background-position: 50% 50%;
+  min-height: 50vw;
 }
 
-.u-section-1 .u-sheet-1 {
-  min-height: 801px;
+.u-section-1 .u-text-1 {
+  margin: 28px auto 0 calc(((100% - 1240px) / 2));
+}
+
+.u-section-1 .u-group-1 {
+  min-height: 669px;
+  height: auto;
+  margin-top: 28px;
+  margin-bottom: 0;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 75px;
 }
 
 .u-section-1 .u-btn-1 {
-  margin: 38px 60px 60px auto;
+  border-style: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 60px 0 auto;
 }
 
 @media (max-width: 1199px) {
-  .u-section-1 .u-sheet-1 {
-    min-height: 660px;
+  .u-section-1 .u-text-1 {
+    margin-left: calc(((100% - 940px) / 2));
+  }
+
+  .u-section-1 .u-group-1 {
+    height: auto;
   }
 
   .u-section-1 .u-btn-1 {
-    margin-right: 0;
+    margin-right: calc(((100% - 940px) / 2));
   }
 }
 
 @media (max-width: 991px) {
-  .u-section-1 .u-sheet-1 {
-    min-height: 506px;
+  .u-section-1 .u-text-1 {
+    margin-left: calc(((100% - 720px) / 2));
+  }
+
+  .u-section-1 .u-btn-1 {
+    margin-right: calc(((100% - 720px) / 2));
   }
 }
 
 @media (max-width: 767px) {
-  .u-section-1 .u-sheet-1 {
-    min-height: 380px;
+  .u-section-1 .u-text-1 {
+    margin-left: calc(((100% - 540px) / 2));
+  }
+
+  .u-section-1 .u-btn-1 {
+    margin-right: calc(((100% - 540px) / 2));
   }
 }
 
 @media (max-width: 575px) {
-  .u-section-1 .u-sheet-1 {
-    min-height: 239px;
+  .u-section-1 .u-text-1 {
+    margin-left: calc(((100% - 340px) / 2));
+  }
+
+  .u-section-1 .u-btn-1 {
+    margin-right: calc(((100% - 340px) / 2));
   }
 }
+ .tool-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 100px;
+}
+
+.tool-info {
+    flex-grow: 1;
+    margin-right: 100px;
+}
+
+.delete-form {
+    flex-basis: auto;
+    margin-left: 100px;
+}
+
+.delete-button {
+    /* Tutaj możesz dodać dodatkowe style dla przycisku, np. kolory, padding, itp. */
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+

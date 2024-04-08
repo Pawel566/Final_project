@@ -4,43 +4,32 @@
 }
 
 .u-section-1 .u-sheet-1 {
-  min-height: 100vh;
+  min-height: 50vw;
 }
 
 .u-section-1 .u-form-1 {
-  height: 481px;
-  margin: 88px 246px 60px 0;
+  height: 456px;
+  margin: 82px 670px 60px 0;
 }
 
-.u-section-1 .u-form-group-3 {
+.u-section-1 .u-form-group-4 {
   margin-left: 0;
-}
-
-.u-section-1 .u-btn-1 {
-  background-image: none;
 }
 
 @media (max-width: 1199px) {
   .u-section-1 .u-form-1 {
-    width: 570px;
-    margin-right: 46px;
+    margin-right: 370px;
   }
 }
 
 @media (max-width: 991px) {
   .u-section-1 .u-form-1 {
-    margin-right: 0;
+    margin-right: 150px;
   }
 }
 
 @media (max-width: 767px) {
   .u-section-1 .u-form-1 {
-    width: 540px;
-  }
-}
-
-@media (max-width: 575px) {
-  .u-section-1 .u-form-1 {
-    width: 340px;
+    margin-right: 0;
   }
 }
