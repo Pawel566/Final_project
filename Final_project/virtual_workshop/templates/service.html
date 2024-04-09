@@ -73,7 +73,6 @@
                         <form action="{% url 'repair_tool' service.id %}" method="post">
                             {% csrf_token %}
                             <input type="checkbox" name="repaired" {% if service.repaired %}checked{% endif %}> Naprawione
-                            <button type="submit">Zapisz zmianę</button>
                         </form>
                         <form action="{% url 'delete_service' service.id %}" method="post">
                             {% csrf_token %}

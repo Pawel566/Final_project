@@ -15,6 +15,7 @@ class Service(models.Model):
     tool = models.ForeignKey(Tools, on_delete=models.CASCADE, verbose_name="Narzędzie", related_name='services_tool')
     fault_description = models.TextField(verbose_name="Opis usterki")
     expected_pickup_date = models.DateField(verbose_name="Przewidywany czas odbioru")
+    quantity = models.IntegerField(default=1, verbose_name="Ilość w serwisie")
     repaired = models.BooleanField(default=False, verbose_name="Naprawione")
 
     def __str__(self):

@@ -75,7 +75,10 @@
             <label for="in_job_{{ tool.id }}">W pracy</label>
             <input type="checkbox" name="in_service" id="in_service_{{ tool.id }}" {% if tool.in_service %} checked {% endif %}>
             <label for="in_service_{{ tool.id }}">W serwisie</label>
-            <button type="submit">Zaktualizuj status</button>
+        </form>
+        <form action="{% url 'increment_tool_quantity' tool.id %}" method="post" class="increment-form">
+            {% csrf_token %}
+            <button type="submit" class="increase-quantity-btn">Dodaj narzędzie</button>
         </form>
         <form action="{% url 'delete_tool' tool.id %}" method="post" class="delete-form">
             {% csrf_token %}
