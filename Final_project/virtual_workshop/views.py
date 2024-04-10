@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Tools, Service
+from .models import Tools, Service, Jobs
 from django.contrib import messages
 from django.views.decorators.http import require_POST
 from django.http import HttpResponseRedirect, HttpResponse
@@ -54,13 +54,33 @@ def tools_status(request, tool_id):
 
 
 def jobs(request):
-    return render(request, 'jobs.html')
+    job_list = Jobs.objects.all()
+    return render(request, 'jobs.html', {'jobs': job_list})
+
+
+@require_POST
+def delete_job(request, job_id):
+    job = Jobs.objects.get(id=job_id)
+    job.delete()
+    return redirect('jobs')
 
 def add_job(request):
-    return render(request, 'add_job.html')
+    if request.method == 'GET':
+        return render(request, 'add_job.html')
+    else:
+        job_name = request.POST.get('job_name')
+        address = request.POST.get('address')
+        new_job = Jobs(job_name=job_name, address=address)
+        new_job.save()
+        return redirect('jobs')
+
+
 
 def add_tool_to_job(request):
-    return render(request, 'add_tool_to_job.html')
+    if request.method == 'GET':
+        jobs = Jobs.objects.all()
+        tools = Tools.objects.filter(quantity__gt=0)
+    return render(request, 'add_tool_to_job.html', {'jobs': jobs, 'tools': tools})
 
 def service(request):
     services = Service.objects.all()

@@ -25,4 +25,13 @@ class Service(models.Model):
 class Jobs(models.Model):
     job_name = models.CharField(max_length=255, verbose_name="Nazwa zlecenia")
     address = models.CharField(max_length=255, verbose_name="Adres")
+    tools = models.ManyToManyField(Tools, through='JobTool', verbose_name="Narzędzia")
+
+
+class JobTool(models.Model):
+    job = models.ForeignKey(Jobs, on_delete=models.CASCADE)
+    tool = models.ForeignKey(Tools, on_delete=models.CASCADE)
+    quantity = models.IntegerField(verbose_name="Ilość")
+
+
 

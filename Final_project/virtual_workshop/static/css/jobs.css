@@ -26,6 +26,13 @@
   margin: 0 61px 0 auto;
 }
 
+.u-section-1 .u-btn-2 {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 8px 8px 0 auto;
+}
+
 @media (max-width: 1199px) {
   .u-section-1 .u-text-1 {
     margin-left: calc(((100% - 940px) / 2));
@@ -37,6 +44,10 @@
 
   .u-section-1 .u-btn-1 {
     margin-right: calc(((100% - 940px) / 2));
+  }
+
+  .u-section-1 .u-btn-2 {
+    margin-right: 0;
   }
 }
 
@@ -73,4 +84,28 @@
   .u-section-1 .u-btn-1 {
     margin-right: calc(((100% - 340px) / 2));
   }
+}
+
+.job-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 100px;
+}
+
+.job-info {
+    flex-grow: 1;
+}
+
+.delete-form {
+    flex-basis: auto;
+}
+
+.delete-button {
+    padding: 5px 10px !important;
+    background-color: #ff4d4d;
+    color: white !important;
+    border: black !important;
+    cursor: pointer !important;
 }

@@ -59,21 +59,20 @@
     <section class="u-clearfix u-container-align-center u-image u-section-1" id="sec-7e8d" data-image-width="1600" data-image-height="1031">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-form u-form-1">
-          <form action="jobs.html" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;" redirect="true" method="post">
-            <div class="u-form-group">
+          <form action="{% url 'add_job' %}" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;" redirect="true" method="post">
+                {% csrf_token %}
+              <div class="u-form-group">
               <label for="name-3d78" class="u-label u-text-body-alt-color">Zlecenie</label>
-              <input id="name-3d78" name="name" class="u-input u-input-rectangle u-text-body-color" required="required" type="text">
+              <input id="name-3d78" name="job_name" class="u-input u-input-rectangle u-text-body-color" required="required" type="text">
             </div>
             <div class="u-form-group">
               <label for="email-3d78" class="u-label u-text-body-alt-color">Adres</label>
-              <input id="email-3d78" name="adress" class="u-input u-input-rectangle u-text-body-color" required="required" type="text">
+              <input id="email-3d78" name="address" class="u-input u-input-rectangle u-text-body-color" required="required" type="text">
             </div>
             <div class="u-align-left u-form-group u-form-submit">
               <a href="#" class="u-btn u-btn-submit u-button-style">Dodaj zlecenie </a>
               <input type="submit" value="submit" class="u-form-control-hidden">
             </div>
-            <div class="u-form-send-message u-form-send-success"> Dziękujemy! Twoja wiadomość została wysłana! </div>
-            <div class="u-form-send-error u-form-send-message"> Przepraszamy, wiadomość nie mogła zostać wysłana. Popraw błędy i spróbuj ponownie. </div>
             <input type="hidden" value="" name="recaptchaResponse">
           </form>
         </div>

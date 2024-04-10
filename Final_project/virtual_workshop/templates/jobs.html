@@ -61,14 +61,29 @@
       <div class="u-container-style u-expanded-width u-grey-10 u-group u-opacity u-opacity-85 u-group-1">
         <div class="u-container-layout u-valign-top u-container-layout-1">
           <a href="{% url 'add_job' %}" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">Dodaj zlecenie</a>
+            {% for job in jobs %}
+            <div class="job-item">
+                <div class="job-info">
+                    <p>Zlecenie: {{ job.job_name }}</p>
+                    <p>Adres: {{ job.address }}</p>
+                </div>
+                <form action="{% url 'delete_job' job.id %}" method="post" class="delete-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="job_id" value="{{ job.id }}">
+                    <button type="submit" class="delete-button">Usuń zlecenie</button>
+                </form>
+            </div>
+            {% endfor %}
         </div>
       </div>
     </section>
-    
-    
-    
+
+
+
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-7a80"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">dg</p>
       </div></footer>
+    
+
   
 </body></html>
