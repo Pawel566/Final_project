@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Tools, Service, Jobs, JobTool
+from .models import Tools, Service, Jobs, JobTool, CreateUser
 from django.contrib import messages
 from django.views.decorators.http import require_POST
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import timezone
+from django.contrib.auth.hashers import make_password
 
 # Create your views here.
 
@@ -148,6 +149,23 @@ def take_from_service(request, service_id):
     tool.save()
     service.delete()
     return redirect('service')
+
+
+def add_user(request):
+    if request.method == 'GET':
+        return render(request, 'add_user.html')
+    else:
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        new_user = CreateUser(name=name, email=email)
+        new_user.password = make_password(password)
+        new_user.save()
+        messages.success(request, 'Twoje konto zostało pomyślnie założone!')
+        return redirect('dashboard')
+
+def login(request):
+    return render(request, 'login.html')
 
 
 

@@ -3,20 +3,18 @@
 <html style="font-size: 16px;" lang="pl"><head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="​Project Planning, INTUITIVE">
+    <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>dashboard</title>
+    <title>add_user</title>
     <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
-<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" media="screen">
+<link rel="stylesheet" href="{% static 'css/add_user.css' %}" media="screen">
     <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
     <meta name="generator" content="Nicepage 6.6.3, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-    
-    
 
     <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="dashboard">
+    <meta property="og:title" content="add_user">
     <meta property="og:description" content="">
     <meta property="og:type" content="website">
   <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
@@ -39,28 +37,30 @@
         </nav>
         <a href="{% url 'dashboard' %}" class="u-border-none u-btn u-button-style u-none u-btn-1">Strona główna</a>
       </div></header>
-    <section class="u-align-center u-clearfix u-image u-section-1" id="carousel_bc4f">
+    <section class="u-clearfix u-image u-section-1" id="sec-4a60" data-image-width="1600" data-image-height="1031">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-container-style u-grey-10 u-group u-opacity u-opacity-0 u-group-1">
-          <div class="u-container-layout u-container-layout-1">
-              <a href="{% url 'add_user' %}" class="u-btn u-button-style u-btn-1">Stwórz konto</a>
-               <a href="{% url 'login' %}" class="u-btn u-button-style u-btn-2">Zaloguj</a>
-            {% if messages %}
-                {% for message in messages %}
-            <div class="alert {{ message.tags }}">
-            {{ message }}
+        <h3 class="u-text u-text-body-alt-color u-text-default u-text-1">Stwórz swoje konto </h3>
+        <div class="u-form u-form-1">
+          <form action="{% url 'add_user' %}" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;" redirect="true" method="post">
+            {% csrf_token %}
+            <div class="u-form-group u-form-name">
+                <label for="name-df28" class="u-label u-text-white">Nazwa użytkownika</label>
+                <input type="text" id="name-df28" name="name" class="u-input u-input-rectangle" required="">
             </div>
-            {% endfor %}
-            {% endif %}
+            <div class="u-form-group">
+                <label for="email-df28" class="u-label u-text-white">Podaj e-mail</label>
+                <input type="email" id="email-df28" name="email" class="u-input u-input-rectangle" required="required">
+            </div>
+            <div class="u-form-group">
+                <label for="text-88fe" class="u-label u-text-white">Podaj hasło</label>
+                <input type="password" id="text-88fe" name="password" class="u-input u-input-rectangle" required="required">
+            </div>
+            <div class="u-align-left u-form-group u-form-submit">
+                <a href="dashboard.html" class="u-btn u-btn-submit u-button-style">Dodaj </a>
+              <input type="submit" value="submit" class="u-form-control-hidden">
+            </div>
+</form>
 
-          </div>
-        </div>
-        <div class="u-align-left u-container-style u-group u-opacity u-opacity-75 u-white u-group-2">
-          <div class="u-container-layout u-container-layout-2">
-            <h2 class="u-text u-text-default u-text-1">O aplikacji: </h2>
-            <p class="u-text u-text-2">"Wirtualny warsztat" to aplikacja stworzona dla tych, którzy chcą wiedzieć gdzie są ich narzędzia.<br>Twoja wiertarka znajduje się w serwisie, a może pracuje przy zleceniu?<br>Z tą aplikacją nie zgubisz żadnego narzędzia!
-            </p>
-          </div>
         </div>
       </div>
     </section>

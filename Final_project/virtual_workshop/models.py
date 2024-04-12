@@ -1,4 +1,5 @@
 from django.db import models
+import hashlib
 
 # Create your models here.
 class Tools(models.Model):
@@ -33,6 +34,19 @@ class JobTool(models.Model):
     job = models.ForeignKey(Jobs, on_delete=models.CASCADE)
     tool = models.ForeignKey(Tools, on_delete=models.CASCADE)
     active = models.BooleanField(default=True, verbose_name="Aktywne")
+
+
+
+class CreateUser(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=255)
+
+    def set_password(self, without_hash_password):
+        self.password = hashlib.sha256(without_hash_password.encode()).hexdigest()
+
+    def check_password(self, without_hash_password):
+        return self.password == hashlib.sha256(without_hash_password.encode()).hexdigest()
 
 
 

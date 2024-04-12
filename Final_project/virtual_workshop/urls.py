@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from .views import (dashboard_view, tools, add_tools, jobs,
                                     service, add_job, add_tool_to_job, add_tool_to_service, delete_tool,
-                    tools_status, repair_tool, take_from_service, buy_new_tool, delete_job, remove_tool_from_job)
+                    tools_status, repair_tool, take_from_service, buy_new_tool, delete_job, remove_tool_from_job,
+                    add_user, login)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,4 +38,6 @@ urlpatterns = [
     path('tools/increment/<int:tool_id>/', buy_new_tool, name='increment_tool_quantity'),
     path('jobs/delete/<int:job_id>/', delete_job, name='delete_job'),
     path('jobs/<int:job_id>/remove_tool/<int:tool_id>/', remove_tool_from_job, name='remove_tool_from_job'),
+    path('add_user/', add_user, name='add_user'),
+    path('dashboard/login/', login, name='login')
 ]
