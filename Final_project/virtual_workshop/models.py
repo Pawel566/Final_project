@@ -28,10 +28,12 @@ class Jobs(models.Model):
     tools = models.ManyToManyField(Tools, through='JobTool', verbose_name="Narzędzia")
 
 
+
 class JobTool(models.Model):
     job = models.ForeignKey(Jobs, on_delete=models.CASCADE)
     tool = models.ForeignKey(Tools, on_delete=models.CASCADE)
-    quantity = models.IntegerField(verbose_name="Ilość")
+    active = models.BooleanField(default=True, verbose_name="Aktywne")
+
 
 
 

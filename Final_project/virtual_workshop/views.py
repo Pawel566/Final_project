@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Tools, Service, Jobs
+from .models import Tools, Service, Jobs, JobTool
 from django.contrib import messages
 from django.views.decorators.http import require_POST
 from django.http import HttpResponseRedirect, HttpResponse
@@ -54,8 +54,10 @@ def tools_status(request, tool_id):
 
 
 def jobs(request):
-    job_list = Jobs.objects.all()
-    return render(request, 'jobs.html', {'jobs': job_list})
+    if request.method == 'GET':
+        job_list = Jobs.objects.all()
+        tools = Tools.objects.all()
+    return render(request, 'jobs.html', {'jobs': job_list, 'tools': tools })
 
 
 @require_POST
@@ -77,10 +79,32 @@ def add_job(request):
 
 
 def add_tool_to_job(request):
-    if request.method == 'GET':
+    if request.method == 'POST':
+        job_id = request.POST.get('job')
+        tool_id = request.POST.get('tool')
+        job = Jobs.objects.get(id=job_id)
+        tool = Tools.objects.get(id=tool_id)
+        JobTool.objects.create(job=job, tool=tool)
+        if tool.quantity > 0:
+            tool.quantity -= 1
+            tool.in_job = True
+            tool.save()
+            tool.save()
+        return redirect('jobs')
+    else:
         jobs = Jobs.objects.all()
-        tools = Tools.objects.filter(quantity__gt=0)
-    return render(request, 'add_tool_to_job.html', {'jobs': jobs, 'tools': tools})
+        tools = Tools.objects.filter(quantity__gt=0)  # Pokaż tylko dostępne narzędzia
+        return render(request, 'add_tool_to_job.html', {'jobs': jobs, 'tools': tools})
+@require_POST
+def remove_tool_from_job(request, job_id, tool_id):
+    job = Jobs.objects.get(id=job_id)
+    tool_id = request.POST.get('tool')
+    tool = Tools.objects.get(id=tool_id)
+    job.tools.remove(tool)
+    tool.quantity += 1
+    tool.in_job = False
+    tool.save()
+    return redirect('jobs')
 
 def service(request):
     services = Service.objects.all()
