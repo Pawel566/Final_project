@@ -37,17 +37,5 @@ class JobTool(models.Model):
 
 
 
-class CreateUser(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=255)
-
-    def set_password(self, without_hash_password):
-        self.password = hashlib.sha256(without_hash_password.encode()).hexdigest()
-
-    def check_password(self, without_hash_password):
-        return self.password == hashlib.sha256(without_hash_password.encode()).hexdigest()
-
-
 
 

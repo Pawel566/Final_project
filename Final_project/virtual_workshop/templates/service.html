@@ -40,6 +40,7 @@
       <h3 class="u-text u-text-body-alt-color u-text-1">Lista narzędzi w serwisie:</h3>
       <div class="u-container-style u-expanded-width u-grey-10 u-group u-opacity u-opacity-85 u-group-1">
         <div class="u-container-layout u-valign-top u-container-layout-1">
+            {% if user.is_authenticated %}
           <a href="{% url 'add_tool_to_service' %}" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">Wyślij narzędzie do serwisu</a>
             {% for service in services %}
                 <div class="service-item">
@@ -61,6 +62,9 @@
                     </div>
                 </div>
             {% endfor %}
+            {% else %}
+                <p>Aby zarządzać serwisem, musisz się zalogować.</p>
+            {% endif %}
         </div>
       </div>
     </section>

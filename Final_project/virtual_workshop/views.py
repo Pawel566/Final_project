@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
-from .models import Tools, Service, Jobs, JobTool, CreateUser
+from .models import Tools, Service, Jobs, JobTool
 from django.contrib import messages
 from django.views.decorators.http import require_POST
-from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import timezone
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.auth import logout as auth_logout
+
 
 # Create your views here.
 
@@ -13,10 +16,12 @@ from django.shortcuts import render
 def dashboard_view(request):
     return render(request, 'dashboard.html')
 
+
 def tools(requset):
     tools_list = Tools.objects.all()
     return render(requset, 'tools.html', {'tools': tools_list})
 
+@login_required
 def add_tools(request):
     if request.method == 'GET':
         return render(request, 'add_tools.html')
@@ -29,13 +34,14 @@ def add_tools(request):
         tool.save()
         messages.success(request, "Narzędzie zostało dodane!")
         return redirect('tools')
-
+@login_required
 def buy_new_tool(request, tool_id):
     tool = Tools.objects.get(id=tool_id)
     tool.quantity += 1
     tool.save()
     messages.success(request, f"Ilość narzędzia {tool.name} została zwiększona.")
     return redirect('tools')
+@login_required
 @require_POST
 def delete_tool(request, tool_id):
     tool = Tools.objects.get(id=tool_id)
@@ -46,6 +52,7 @@ def delete_tool(request, tool_id):
         tool.delete()
     return redirect('tools')
 
+@login_required
 def tools_status(request, tool_id):
     tool = Tools.objects.get(Tools, id=tool_id)
     tool.in_job = 'in_job' in request.POST
@@ -61,12 +68,14 @@ def jobs(request):
     return render(request, 'jobs.html', {'jobs': job_list, 'tools': tools })
 
 
+@login_required
 @require_POST
 def delete_job(request, job_id):
     job = Jobs.objects.get(id=job_id)
     job.delete()
     return redirect('jobs')
 
+@login_required
 def add_job(request):
     if request.method == 'GET':
         return render(request, 'add_job.html')
@@ -79,6 +88,7 @@ def add_job(request):
 
 
 
+@login_required
 def add_tool_to_job(request):
     if request.method == 'POST':
         job_id = request.POST.get('job')
@@ -94,8 +104,9 @@ def add_tool_to_job(request):
         return redirect('jobs')
     else:
         jobs = Jobs.objects.all()
-        tools = Tools.objects.filter(quantity__gt=0)  # Pokaż tylko dostępne narzędzia
+        tools = Tools.objects.filter(quantity__gt=0)
         return render(request, 'add_tool_to_job.html', {'jobs': jobs, 'tools': tools})
+@login_required
 @require_POST
 def remove_tool_from_job(request, job_id, tool_id):
     job = Jobs.objects.get(id=job_id)
@@ -116,6 +127,7 @@ def service(request):
     return render(request, 'service.html', {'services': services})
 
 
+@login_required
 def add_tool_to_service(request):
     if request.method == 'GET':
         tools = Tools.objects.filter(quantity__gt=0)
@@ -155,17 +167,36 @@ def add_user(request):
     if request.method == 'GET':
         return render(request, 'add_user.html')
     else:
-        name = request.POST.get('name')
+        username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        new_user = CreateUser(name=name, email=email)
-        new_user.password = make_password(password)
+        if User.objects.filter(email=email).exists():
+            messages.error(request, 'Ten email jest już zajęty.')
+            return render(request, 'add_user.html')
+        new_user = User(username=username, email=email)
+        new_user.set_password(password)
         new_user.save()
         messages.success(request, 'Twoje konto zostało pomyślnie założone!')
         return redirect('dashboard')
 
 def login(request):
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    else:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
+            messages.success(request, f"Cześć {user} udało Ci się zalogować.")
+            return redirect('dashboard')
+        else:
+            messages.error(request, "Błędny email lub hasło.")
     return render(request, 'login.html')
+
+def logout(request):
+    auth_logout(request)
+    return render(request, 'dashboard.html')
 
 
 

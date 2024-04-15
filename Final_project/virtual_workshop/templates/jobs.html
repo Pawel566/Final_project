@@ -41,6 +41,7 @@
       <h3 class="u-text u-text-body-alt-color u-text-default u-text-1">Lista zleceń:</h3>
       <div class="u-container-style u-expanded-width u-grey-10 u-group u-opacity u-opacity-85 u-group-1">
         <div class="u-container-layout u-valign-top u-container-layout-1">
+            {% if user.is_authenticated %}
           <a href="{% url 'add_job' %}" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">Dodaj zlecenie</a>
           <a href="{% url 'add_tool_to_job' %}" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-2">Wyślij narzędzie do pracy </a>
             {% for job in jobs %}
@@ -81,6 +82,9 @@
                 </form>
             </div>
             {% endfor %}
+            {% else %}
+                <p>Aby zarządzać zleceniammusisz się zalogować.</p>
+            {% endif %}
         </div>
       </div>
     </section>

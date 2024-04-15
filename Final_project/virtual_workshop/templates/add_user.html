@@ -1,75 +1,33 @@
 <!DOCTYPE html>
-{% load static %}
-<html style="font-size: 16px;" lang="pl"><head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <title>add_user</title>
-    <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
-<link rel="stylesheet" href="{% static 'css/add_user.css' %}" media="screen">
-    <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
-    <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
-    <meta name="generator" content="Nicepage 6.6.3, nicepage.com">
-    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj Użytkownika</title>
+</head>
+<body>
+    <h1>Dodaj Użytkownika</h1>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="post" action="{% url 'add_user' %}">
+        {% csrf_token %}
+        <label for="username">Nazwa użytkownika:</label>
+        <input type="text" id="username" name="username" required><br><br>
 
-    <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="add_user">
-    <meta property="og:description" content="">
-    <meta property="og:type" content="website">
-  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
-  <body data-path-to-root="./" data-include-products="false" class="u-body u-xl-mode" data-lang="pl"><header class="u-header" id="sec-403e" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-text u-text-default u-text-1">Wirtualny warsztat</h2>
-        <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
-          <div class="menu-collapse">
-            <a class="u-button-style u-nav-link" href="#">
-              <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-48a5"></use></svg>
-              <svg class="u-svg-content" version="1.1" id="svg-48a5" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
-</g></svg>
-            </a>
-          </div>
-          <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-unstyled"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'tools' %}">Narzędzia</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'jobs' %}">Zlecenia</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'service' %}">Serwis</a>
-</li></ul>
-          </div>
-        </nav>
-        <a href="{% url 'dashboard' %}" class="u-border-none u-btn u-button-style u-none u-btn-1">Strona główna</a>
-      </div></header>
-    <section class="u-clearfix u-image u-section-1" id="sec-4a60" data-image-width="1600" data-image-height="1031">
-      <div class="u-clearfix u-sheet u-sheet-1">
-        <h3 class="u-text u-text-body-alt-color u-text-default u-text-1">Stwórz swoje konto </h3>
-        <div class="u-form u-form-1">
-          <form action="{% url 'add_user' %}" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;" redirect="true" method="post">
-            {% csrf_token %}
-            <div class="u-form-group u-form-name">
-                <label for="name-df28" class="u-label u-text-white">Nazwa użytkownika</label>
-                <input type="text" id="name-df28" name="name" class="u-input u-input-rectangle" required="">
-            </div>
-            <div class="u-form-group">
-                <label for="email-df28" class="u-label u-text-white">Podaj e-mail</label>
-                <input type="email" id="email-df28" name="email" class="u-input u-input-rectangle" required="required">
-            </div>
-            <div class="u-form-group">
-                <label for="text-88fe" class="u-label u-text-white">Podaj hasło</label>
-                <input type="password" id="text-88fe" name="password" class="u-input u-input-rectangle" required="required">
-            </div>
-            <div class="u-align-left u-form-group u-form-submit">
-                <a href="dashboard.html" class="u-btn u-btn-submit u-button-style">Dodaj </a>
-              <input type="submit" value="submit" class="u-form-control-hidden">
-            </div>
-</form>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
 
-        </div>
-      </div>
-    </section>
+        <label for="password">Hasło:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" value="Dodaj Użytkownika">
+    </form>
+</body>
+</html>
+
     
     
-    
-    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-7a80"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <p class="u-small-text u-text u-text-variant u-text-1">dg</p>
-      </div></footer>
-
-  
-</body></html>
