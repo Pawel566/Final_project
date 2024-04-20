@@ -1,5 +1,4 @@
 from django.db import models
-import hashlib
 
 # Create your models here.
 class Tools(models.Model):
@@ -19,8 +18,7 @@ class Service(models.Model):
     quantity = models.IntegerField(default=1, verbose_name="Ilość w serwisie")
     repaired = models.BooleanField(default=False, verbose_name="Naprawione")
 
-    def __str__(self):
-        return f"Serwis narzędzia {self.tool.name} - {self.expected_pickup_date}"
+
 
 
 class Jobs(models.Model):

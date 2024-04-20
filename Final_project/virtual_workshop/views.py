@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from .models import Tools, Service, Jobs, JobTool
 from django.contrib import messages
 from django.views.decorators.http import require_POST
@@ -17,12 +17,13 @@ def dashboard_view(request):
     return render(request, 'dashboard.html')
 
 
-def tools(requset):
+def tools(request):
     tools_list = Tools.objects.all()
-    return render(requset, 'tools.html', {'tools': tools_list})
+    return render(request, 'tools.html', {'tools': tools_list})
 
 @login_required
 def add_tools(request):
+    """Supports adding new tools to the database via an HTML form."""
     if request.method == 'GET':
         return render(request, 'add_tools.html')
     else:
@@ -36,14 +37,16 @@ def add_tools(request):
         return redirect('tools')
 @login_required
 def buy_new_tool(request, tool_id):
+    """you can add new tool to database without form"""
     tool = Tools.objects.get(id=tool_id)
     tool.quantity += 1
     tool.save()
-    messages.success(request, f"Ilość narzędzia {tool.name} została zwiększona.")
+    messages.success(request, f"Kupiłeś {tool.name}.")
     return redirect('tools')
 @login_required
 @require_POST
 def delete_tool(request, tool_id):
+    """You can delete tool from list"""
     tool = Tools.objects.get(id=tool_id)
     if tool.quantity > 1:
         tool.quantity -= 1
@@ -62,6 +65,7 @@ def tools_status(request, tool_id):
 
 
 def jobs(request):
+    """you can see all job here"""
     if request.method == 'GET':
         job_list = Jobs.objects.all()
         tools = Tools.objects.all()
@@ -77,6 +81,7 @@ def delete_job(request, job_id):
 
 @login_required
 def add_job(request):
+    """You can add new job here"""
     if request.method == 'GET':
         return render(request, 'add_job.html')
     else:
@@ -90,6 +95,7 @@ def add_job(request):
 
 @login_required
 def add_tool_to_job(request):
+    """Here you add tools to orders"""
     if request.method == 'POST':
         job_id = request.POST.get('job')
         tool_id = request.POST.get('tool')
@@ -99,7 +105,6 @@ def add_tool_to_job(request):
         if tool.quantity > 0:
             tool.quantity -= 1
             tool.in_job = True
-            tool.save()
             tool.save()
         return redirect('jobs')
     else:
@@ -119,6 +124,7 @@ def remove_tool_from_job(request, job_id, tool_id):
     return redirect('jobs')
 
 def service(request):
+    """checks the tool is ready for receipt"""
     services = Service.objects.all()
     for service in services:
         if service.expected_pickup_date < timezone.now().date() and not service.repaired:
@@ -129,6 +135,7 @@ def service(request):
 
 @login_required
 def add_tool_to_service(request):
+    """Send tool to service"""
     if request.method == 'GET':
         tools = Tools.objects.filter(quantity__gt=0)
         return render(request, 'add_tool_to_service.html', {'tools': tools})
@@ -164,6 +171,7 @@ def take_from_service(request, service_id):
 
 
 def add_user(request):
+    """Create new user"""
     if request.method == 'GET':
         return render(request, 'add_user.html')
     else:
@@ -180,6 +188,7 @@ def add_user(request):
         return redirect('dashboard')
 
 def login(request):
+    """user login to the application"""
     if request.method == 'GET':
         return render(request, 'login.html')
     else:
