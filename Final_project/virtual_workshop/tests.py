@@ -1,15 +1,16 @@
 from django.test import TestCase
 from .models import Tools, Service, Jobs
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your tests here.
 
 class ToolModelTest(TestCase):
-    def add_tool(self):
+    def setUp(self):
         Tools.object.create(name="Wiertarka", model="DHR 243", quantity=2, accessories="Wiertła", in_job=False, in_service=False)
 
     def add_tool(self):
-        drill = Tools.object.get(name='Wiertarka')
+        drill = Tools.objects.get(name='Wiertarka')
         self.assertEquals(drill.model, "Dhr 243")
         self.assertEquals(drill.quantity, 2)
         self.assertEquals(drill.accessories, "Wiertła")
@@ -35,7 +36,7 @@ class ToolsViewTest(TestCase):
         tools_in_context = response.context['tools']
         self.assertEqual(len(tools_in_context), 2)
         self.assertEqual(tools_in_context[0].name, "Wiertarka")
-        self.assertEqual(tools_in_context[1].name, "Młotek")
+        self.assertEqual(tools_in_context[1].name, "Wkrętarka")
 
 class Buy_tool(TestCase):
     def setUp(self):
@@ -103,6 +104,20 @@ class TakeFromServiceTests(TestCase):
         service_id = self.service.id
         response = self.client.post(reverse('take_from_service', args=(service_id,)))
         self.assertRedirects(response, reverse('service'))
+
+class AddUserViewTests(TestCase):
+    def test_add_user_view(self):
+        response = self.client.get(reverse('add_user'))
+        self.assertTemplateUsed(response, 'add_user.html')
+
+class LoginViewTests(TestCase):
+    def setUp(self):
+        User.objects.create_user('user', 'user@example.com', 'user')
+
+    def test_login_view(self):
+        response = self.client.get(reverse('login'))
+        self.assertTemplateUsed(response, 'login.html')
+
 
 
 

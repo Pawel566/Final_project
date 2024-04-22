@@ -17,29 +17,20 @@ Including another URLconf
 from django.contrib.auth import logout
 from django.contrib import admin
 from django.urls import path
-from .views import (dashboard_view, tools, add_tools, jobs,
-                                    service, add_job, add_tool_to_job, add_tool_to_service, delete_tool,
-                    tools_status, repair_tool, take_from_service, buy_new_tool, delete_job, remove_tool_from_job,
-                    add_user, login, logout)
+from .views import (DashboardView, ToolsView, AddToolView, JobsView, ServiceView, AddJobView, AddToolToJobView,
+                    AddToolToServiceView, AddUserView, LoginView, LogoutView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', dashboard_view, name='dashboard'),
-    path('tools/', tools, name='tools'),
-    path('tools/add_tools_to_list/', add_tools, name='add_tools'),
-    path('jobs/', jobs, name="jobs"),
-    path('service/', service, name='service'),
-    path('jobs/add_job/', add_job, name='add_job'),
-    path('jobs/add_tool_to_job/', add_tool_to_job, name='add_tool_to_job'),
-    path('service/add_tool_to_service/', add_tool_to_service, name='add_tool_to_service'),
-    path('delete_tool/<int:tool_id>/', delete_tool, name='delete_tool'),
-    path('tools/update_status/<int:tool_id>/', tools_status, name='update_tool_status'),
-    path('repair_tool/<int:service_id>/', repair_tool, name='repair_tool'),
-    path('delete_service/<int:service_id>/', take_from_service, name='delete_service'),
-    path('tools/increment/<int:tool_id>/', buy_new_tool, name='increment_tool_quantity'),
-    path('jobs/delete/<int:job_id>/', delete_job, name='delete_job'),
-    path('jobs/<int:job_id>/remove_tool/<int:tool_id>/', remove_tool_from_job, name='remove_tool_from_job'),
-    path('add_user/', add_user, name='add_user'),
-    path('login/', login, name='login'),
-    path('logout/', logout, name='logout')
+    path('', DashboardView.as_view(), name='dashboard'),
+    path('tools/', ToolsView.as_view(), name='tools'),
+    path('tools/add_tools_to_list/', AddToolView.as_view(), name='add_tools'),
+    path('jobs/', JobsView.as_view(), name="jobs"),
+    path('service/', ServiceView.as_view(), name='service'),
+    path('add_job/', AddJobView.as_view(), name='add_job'),
+    path('jobs/add_tool_to_job/', AddToolToJobView.as_view(), name='add_tool_to_job'),
+    path('service/add_tool_to_service/', AddToolToServiceView.as_view(), name='add_tool_to_service'),
+    path('add_user/', AddUserView.as_view(), name='add_user'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout')
 ]

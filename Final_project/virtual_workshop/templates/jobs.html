@@ -42,6 +42,14 @@
       <div class="u-container-style u-expanded-width u-grey-10 u-group u-opacity u-opacity-85 u-group-1">
         <div class="u-container-layout u-valign-top u-container-layout-1">
             {% if user.is_authenticated %}
+            <div class="container">
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+            {% endif %}
           <a href="{% url 'add_job' %}" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">Dodaj zlecenie</a>
           <a href="{% url 'add_tool_to_job' %}" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-2">Wyślij narzędzie do pracy </a>
             {% for job in jobs %}
@@ -56,7 +64,7 @@
                         {% endfor %}
                     </ul>
                     <script>
-                    function setRemoveToolAction(jobId) {
+                    function setRemo    veToolAction(jobId) {
                     var toolSelect = document.getElementById('tool-select-' + jobId);
                     var toolId = toolSelect.value;
                     var form = document.getElementById('remove-tool-form-' + jobId);
@@ -66,17 +74,20 @@
 
                 </div>
 
-                <form id="remove-tool-form-{{ job.id }}" method="post" action="{% url 'remove_tool_from_job' job.id 999 %}">
+                <form method="post" action="{% url 'jobs' %}">
                     {% csrf_token %}
-                    <select name="tool" id="tool-select-{{ job.id }}" onchange="setRemoveToolAction({{ job.id }})">
+                    <input type="hidden" name="action" value="remove_tool">
+                    <input type="hidden" name="job_id" value="{{ job.id }}">
+                    <select name="tool_id" id="tool-select-{{ job.id }}">
                         {% for tool in job.tools.all %}
                         <option value="{{ tool.id }}">{{ tool.name }} - {{ tool.model }}</option>
                         {% endfor %}
-                </select>
-                    <button type="submit">Zabierz narzędzie</button>
+                    </select>
+                        <button type="submit" class="btn btn-warning">Zabierz narzędzie</button>
                 </form>
-                <form action="{% url 'delete_job' job.id %}" method="post" class="delete-form">
+                <form method="post" action="{% url 'jobs' %}">
                     {% csrf_token %}
+                    <input type="hidden" name="action" value="delete_job">
                     <input type="hidden" name="job_id" value="{{ job.id }}">
                     <button type="submit" class="delete-button">Usuń zlecenie</button>
                 </form>

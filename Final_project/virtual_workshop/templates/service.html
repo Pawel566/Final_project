@@ -51,13 +51,18 @@
                         <p>Przewidywany czas odbioru: {{ service.expected_pickup_date }}</p>
                     </div>
                     <div class="tool-actions">
-                        <form action="{% url 'repair_tool' service.id %}" method="post">
+                        <form action="{% url 'service' %}" method="post">
                             {% csrf_token %}
+                            <input type="hidden" name="service_id" value="{{ service.id }}">
                             <input type="checkbox" name="repaired" {% if service.repaired %}checked{% endif %}> Naprawione
                         </form>
-                        <form action="{% url 'delete_service' service.id %}" method="post">
+                        <div class="tool-actions">
+                        <form action="{% url 'service' %}" method="post">
                             {% csrf_token %}
-                            <button type="submit">Odbierz narzędzie</button>
+                            {{ form.as_p }}
+                            <input type="hidden" name="service_id" value="{{ service.id }}">
+                            <input type="hidden" name="action" value="take_from_service">
+                            <button type="submit" name="take_from_service">Odbierz narzędzie</button>
                         </form>
                     </div>
                 </div>

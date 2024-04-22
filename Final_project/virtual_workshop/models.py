@@ -9,6 +9,9 @@ class Tools(models.Model):
     in_job = models.BooleanField(default=False, verbose_name="W pracy")
     in_service = models.BooleanField(default=False, verbose_name="W serwisie")
 
+    def __str__(self):
+        return f"{self.name} - {self.model}"
+
 
 
 class Service(models.Model):
@@ -25,6 +28,9 @@ class Jobs(models.Model):
     job_name = models.CharField(max_length=255, verbose_name="Nazwa zlecenia")
     address = models.CharField(max_length=255, verbose_name="Adres")
     tools = models.ManyToManyField(Tools, through='JobTool', verbose_name="Narzędzia")
+
+    def __str__(self):
+        return f"{self.job_name} - {self.address}"
 
 
 

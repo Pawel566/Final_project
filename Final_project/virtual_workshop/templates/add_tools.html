@@ -43,24 +43,10 @@
     <section class="u-clearfix u-container-align-center u-image u-section-1" id="sec-5587" data-image-width="1600" data-image-height="1031">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-form u-form-1">
-          <form action="{% url 'add_tools' %}" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;" redirect="true" method="post">
+          <form action="{% url 'add_tools' %}" method="post" class="u-form">
               {% csrf_token %}
-              <div class="u-form-group">
-              <label for="name-eb1e" class="u-label u-text-body-alt-color">Narzędzie</label>
-              <input id="name-eb1e" name="name" class="u-border-white u-input u-input-rectangle u-text-body-color" required="required" type="text">
-            </div>
-            <div class="u-form-group">
-              <label for="email-eb1e" class="u-label u-text-body-alt-color">Model</label>
-              <input type="text" id="email-eb1e" name="model" class="u-border-white u-input u-input-rectangle u-text-body-color" required="required">
-            </div>
-            <div class="u-form-group">
-              <label for="message-eb1e" class="u-label u-text-body-alt-color">Ilość sztuk</label>
-              <input rows="4" cols="50" id="message-eb1e" name="quantity" class="u-border-white u-input u-input-rectangle u-text-body-color" required="required" type="text">
-            </div>
-            <div class="u-form-group u-form-message u-form-group-4">
-              <label for="text-6583" class="u-label u-text-body-alt-color">Wyposażenie dodatkowe</label>
-              <textarea placeholder="" id="text-6583" name="accessories" class="u-border-white u-input u-input-rectangle u-text-body-color"></textarea>
-            </div>
+              {{ form.as_p }}
+
             <div class="u-align-left u-form-group u-form-submit">
               <a href="#" class="u-btn u-btn-submit u-button-style">Dodaj narzędzie</a>
               <input type="submit" value="submit" class="u-form-control-hidden">
