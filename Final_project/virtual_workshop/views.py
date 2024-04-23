@@ -2,7 +2,7 @@ from django.shortcuts import redirect
 from .models import Tools, Service, Jobs, JobTool
 from django.contrib import messages
 from django.utils import timezone
-from django.contrib.auth import  login as auth_login
+from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.views import View
 from django.views.generic.edit import CreateView
@@ -68,7 +68,6 @@ class ToolsView(LoginRequiredMixin, View):
         tool.in_job = 'in_job' in request.POST
         tool.in_service = 'in_service' in request.POST
         tool.save()
-        messages.success(request, f"Stan narzędzia {tool.name} został zaktualizowany.")
         return redirect('tools')
 
 class AddToolView(CreateView):

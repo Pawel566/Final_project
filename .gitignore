@@ -151,8 +151,9 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
-local_settings.py
-final_database
+local_settings.py/
+final_database/
+.pytest_cache/
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can

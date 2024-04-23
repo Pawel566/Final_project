@@ -32,5 +32,6 @@ urlpatterns = [
     path('service/add_tool_to_service/', AddToolToServiceView.as_view(), name='add_tool_to_service'),
     path('add_user/', AddUserView.as_view(), name='add_user'),
     path('login/', LoginView.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout')
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('tools/<int:tool_id>/buy/', ToolsView.as_view(), name='buy_tool'),
 ]
