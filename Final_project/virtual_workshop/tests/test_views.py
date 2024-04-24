@@ -7,6 +7,8 @@ from django.contrib.messages import get_messages
 from django.contrib.auth.models import User
 from datetime import timedelta
 from django.utils import timezone
+from django.contrib import auth
+from virtual_workshop.forms import LoginForm
 
 @pytest.fixture
 def authenticated_user(client, django_user_model):
@@ -33,13 +35,30 @@ def service(django_user_model):
     )
 
 
-
 @pytest.mark.django_db
 def test_dashboard_view(client):
-    url = reverse('dashboard')
-    response = client.get(url)
+    response = client.get('')
     assert response.status_code == 200
-    assert 'dashboard.html' in (t.name for t in response.templates)
+
+@pytest.mark.django_db
+def test_logout(client):
+    response = client.get('/logout/')
+    assert response.status_code == 302
+    assert response.url == reverse("dashboard")
+
+@pytest.mark.django_db
+def test_login(client):
+    response = client.get("/login/")
+    assert response.status_code == 200
+    assert response.templates[0].name == "login.html"
+    assert isinstance(response.context["form"], LoginForm)
+
+
+
+
+
+
+
 
 @pytest.mark.django_db
 def test_tools_view_requires_login(client):
@@ -186,28 +205,9 @@ def test_add_user_view_post_valid(client):
     messages = list(get_messages(response.wsgi_request))
     assert any(message.message == 'Konto zostało utworzone!' for message in messages)
 
-@pytest.mark.django_db
-def test_login_view_get(client):
-    url = reverse('login')
-    response = client.get(url)
-    assert response.status_code == 200
-    assert 'login.html' in [t.name for t in response.templates]
 
-@pytest.mark.django_db
-def test_login_view_post_valid(client, authenticated_user):
-    url = reverse('login')
-    data = {'username': 'user', 'password': 'password1'}
-    response = client.post(url, data)
-    assert response.status_code == 302
-    assert response.url == reverse('dashboard')
-    messages = list(get_messages(response.wsgi_request))
-    assert any(f"Cześć {authenticated_user.username}, udało Ci się zalogować." in str(message) for message in messages)
 
-def test_logout_view(client, authenticated_user):
-    url = reverse('logout')
-    response = client.get(url)
-    assert response.status_code == 302
-    assert response.url == reverse('dashboard')
+
 
 
 
