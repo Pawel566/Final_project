@@ -37,21 +37,21 @@ def service(django_user_model):
 
 @pytest.mark.django_db
 def test_dashboard_view(client):
-    response = client.get('')
-    assert response.status_code == 200
+    response = client.get('')           #
+    assert response.status_code == 200   #sprawdza czy dtrona została poprawnie załadowana
 
 @pytest.mark.django_db
 def test_logout(client):
-    response = client.get('/logout/')
-    assert response.status_code == 302
-    assert response.url == reverse("dashboard")
+    response = client.get('/logout/')    #żadanie GET na stronie /logout/
+    assert response.status_code == 302      #302 oznacza przekierowanie
+    assert response.url == reverse("dashboard") #sprawdza czy po wylogowaniu przekierowuje na dashboard
 
 @pytest.mark.django_db
 def test_login(client):
-    response = client.get("/login/")
-    assert response.status_code == 200
-    assert response.templates[0].name == "login.html"
-    assert isinstance(response.context["form"], LoginForm)
+    response = client.get("/login/")                     #żadanie GET na stronie /login/
+    assert response.status_code == 200                  #200 sprawdza czy dtrona została poprawnie załadowana
+    assert response.templates[0].name == "login.html"   #sprawdza użyty szablon jest poprawny
+    assert isinstance(response.context["form"], LoginForm) #sprawdza czy użyty formularz jest poprawny
 
 
 
