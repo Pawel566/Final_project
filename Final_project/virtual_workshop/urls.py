@@ -33,5 +33,4 @@ urlpatterns = [
     path('add_user/', AddUserView.as_view(), name='add_user'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('tools/<int:tool_id>/buy/', ToolsView.as_view(), name='buy_tool'),
 ]
