@@ -29,10 +29,13 @@ class ToolsView(LoginRequiredMixin, View):
     template_name = 'tools.html'
     login_url = reverse_lazy('login')
 
-    def get(self, request, tool_id=None, action=None):
+    def get(self, request):
+        tool_id = request.GET.get('tool_id')
+        action = request.GET.get('action')
         if tool_id and action == 'buy':
             form = BuyNewToolForm(initial={'tool_id': tool_id})
             return render(request, self.template_name, {'form': form})
+
         tools_list = Tools.objects.all()
         return render(request, self.template_name, {'tools': tools_list})
 
