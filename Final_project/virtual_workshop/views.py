@@ -12,16 +12,20 @@ from .forms import (ToolForm, BuyNewToolForm, JobForm, AddToolToJobForm, AddTool
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
+
+
 # Create your views here.
 
 from django.shortcuts import render
 
 class DashboardView(View):
+    """You can see dashboard with menu and simple description"""
     def get(self, request):
         return render(request, 'dashboard.html')
 
 
 class ToolsView(LoginRequiredMixin, View):
+    """here you can manage yoyrs tools: add, delete and see where are """
     template_name = 'tools.html'
     login_url = reverse_lazy('login')
 
@@ -45,6 +49,7 @@ class ToolsView(LoginRequiredMixin, View):
         return redirect('tools')
 
     def buy_tool(self, request, tool_id):
+        """Simple function for adding tools"""
         tool = Tools.objects.get(id=tool_id)
         tool.quantity += 1
         tool.save()
@@ -53,6 +58,7 @@ class ToolsView(LoginRequiredMixin, View):
 
 
     def delete_tool(self, request, tool_id):
+        """you can delete tool from your workshop"""
         tool = Tools.objects.get(id=tool_id)
         if tool.quantity > 1:
             tool.quantity -= 1
@@ -64,6 +70,7 @@ class ToolsView(LoginRequiredMixin, View):
         return redirect('tools')
 
     def update_status(self, request, tool_id):
+        """Update tool status. You can see where is now"""
         tool = Tools.objects.get(id=tool_id)
         tool.in_job = 'in_job' in request.POST
         tool.in_service = 'in_service' in request.POST
@@ -71,6 +78,7 @@ class ToolsView(LoginRequiredMixin, View):
         return redirect('tools')
 
 class AddToolView(CreateView):
+    """Form to add tool to workshop"""
     model = Tools
     form_class = ToolForm
     template_name = 'add_tools.html'
@@ -85,6 +93,7 @@ class AddToolView(CreateView):
 
 
 class JobsView(LoginRequiredMixin, View):
+    """here you can see current orders and tools that are working"""
     template_name = 'jobs.html'
     login_url = reverse_lazy('login')
 
@@ -102,12 +111,14 @@ class JobsView(LoginRequiredMixin, View):
         return redirect('jobs')
 
     def delete_job(self, request):
+        """Delete job from list"""
         job_id = request.POST.get('job_id')
         job = Jobs.objects.get(id=job_id)
         job.delete()
         return redirect('jobs')
 
     def remove_tool(self, request):
+        """Delete tool from job and back to workshop"""
         job_id = request.POST.get('job_id')
         tool_id = request.POST.get('tool_id')
         job = Jobs.objects.get(id=job_id)
@@ -121,6 +132,7 @@ class JobsView(LoginRequiredMixin, View):
 
 
 class AddJobView(CreateView):
+    """Form to add new job to list"""
     model = Jobs
     form_class = JobForm
     template_name = 'add_job.html'
@@ -128,6 +140,7 @@ class AddJobView(CreateView):
 
 
 class AddToolToJobView(View):
+    """here you can add tool to current jobs"""
     template_name = 'add_tool_to_job.html'
 
     def get(self, request, *args, **kwargs):
@@ -155,6 +168,7 @@ class AddToolToJobView(View):
         return render(request, self.template_name, {'form': form})
 
 class ServiceView(LoginRequiredMixin, View):
+    """List, where to find tools for repair"""
     template_name = 'service.html'
     login_url = reverse_lazy('login')
 
@@ -180,8 +194,8 @@ class ServiceView(LoginRequiredMixin, View):
 
         return redirect('service')
 
-
     def take_from_service(self, request, service):
+        """Delete tool from service and back to workshop"""
         tool = service.tool
         if tool.quantity >= 0:
             tool.quantity += 1
@@ -194,12 +208,15 @@ class ServiceView(LoginRequiredMixin, View):
         return redirect('service')
 
     def repair_tool(self, service_id):
+        """Checkbox with repair status"""
         service = Service.objects.get(id=service_id)
         service.repaired = True
         service.save()
+
         return redirect('service')
 
 class AddToolToServiceView(CreateView):
+    """Form to send tool to servive"""
     model = Service
     form_class = AddToolToServiceForm
     template_name = 'add_tool_to_service.html'
@@ -223,6 +240,7 @@ class AddToolToServiceView(CreateView):
 
 
 class AddUserView(View):
+    """Form to add new user"""
     form_class = AddNewUser
     template_name = 'add_user.html'
 
@@ -240,6 +258,7 @@ class AddUserView(View):
             return render(request, self.template_name, {'form': form})
 
 class LoginView(View):
+    """Simple login view"""
     form_class = LoginForm
     template_name = 'login.html'
 

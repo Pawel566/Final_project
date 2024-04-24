@@ -131,3 +131,4 @@ except ModuleNotFoundError:
     print("Uzupełnij dane i spróbuj ponownie!")
     exit(0)
 
+
